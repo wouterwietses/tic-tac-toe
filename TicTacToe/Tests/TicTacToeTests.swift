@@ -14,6 +14,12 @@ import Testing
 """)
 }
 
+@Test func initialGameStatusInProgress() async throws {
+    let game = Game()
+
+    #expect(game.status == .inProgress)
+}
+
 @Test func playerOneWinsWithTopRow() async throws {
     let game = playGameWithPlayerOneAsWinner()
 
