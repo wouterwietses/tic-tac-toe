@@ -3,6 +3,16 @@ final class Game {
 
 }
 
-final class Board {
+final class Board: CustomStringConvertible {
+    var description: String {
+        """
+-------------
+|   |   |   |
+|   |   |   |
+|   |   |   |
+-------------
+"""
+    }
+
 
 }
