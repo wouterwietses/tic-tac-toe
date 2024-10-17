@@ -1,3 +1,3 @@
 struct Player: Equatable {
-    let marker: String
+    let marker: Board.Marker
 }

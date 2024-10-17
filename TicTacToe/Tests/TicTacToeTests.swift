@@ -35,7 +35,7 @@ import Testing
 @Test func playerOneWinsGameStatus() async throws {
     let game = try playGameWithPlayerOneAsWinner()
 
-    #expect(game.status == .playerWon(Player(marker: "X")))
+    #expect(game.status == .playerWon(Player(marker: .x)))
 }
 
 @Test func aPositionCanOnlyBeAssignedOnce() async throws {
@@ -58,7 +58,7 @@ import Testing
     try game.play(position: 7)
     try game.play(position: 3)
 
-    #expect(game.status == .playerWon(Player(marker: "O")))
+    #expect(game.status == .playerWon(Player(marker: .o)))
 }
 
 func playGameWithPlayerOneAsWinner() throws -> Game {

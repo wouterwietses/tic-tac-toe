@@ -8,7 +8,7 @@ final class Game {
     let board: Board = Board()
     private(set) var status: Status = .inProgress
 
-    private let players: [Player] = [Player(marker: "X"), Player(marker: "O")]
+    private let players: [Player] = [Player(marker: .x), Player(marker: .o)]
 
     private var currentPlayer: Player
 
