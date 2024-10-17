@@ -14,10 +14,6 @@ final class Game {
     }
 
     private func switchPlayers() {
-        if currentPlayer == players.first! {
-            currentPlayer = players.last!
-        } else {
-            currentPlayer = players.first!
-        }
+        currentPlayer = currentPlayer == players.first ? players.last! : players.first!
     }
 }
