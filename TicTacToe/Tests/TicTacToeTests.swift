@@ -31,3 +31,15 @@ import Testing
 -------------
 """)
 }
+
+@Test func playerOneWinsGameStatus() async throws {
+    let game = Game()
+
+    game.play(position: 1)
+    game.play(position: 4)
+    game.play(position: 2)
+    game.play(position: 5)
+    game.play(position: 3)
+
+    #expect(game.status == GameStatus.winner(player: Player(marker: "X")))
+}
