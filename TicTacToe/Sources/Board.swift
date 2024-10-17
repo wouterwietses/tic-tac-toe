@@ -25,9 +25,10 @@ final class Board: CustomStringConvertible {
     }
 
     func isGameOver() -> Bool {
-        let playerOneWon = playedPositions[1] == "X" && playedPositions[2] == "X" && playedPositions[3] == "X"
-        let playerTwoWon = playedPositions[1] == "O" && playedPositions[2] == "O" && playedPositions[3] == "O"
+        isTopRowWin()
+    }
 
-        return playerOneWon || playerTwoWon
+    private func isTopRowWin() -> Bool {
+        return playedPositions[1] == playedPositions[2] && playedPositions[1] == playedPositions[3]
     }
 }
