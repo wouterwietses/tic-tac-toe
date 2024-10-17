@@ -1,11 +1,12 @@
 final class Game {
 
     enum Status: Equatable {
+        case inProgress
         case playerWon(Player)
     }
 
     let board: Board = Board()
-    private(set) var status: Status = .playerWon(Player(marker: "X"))
+    private(set) var status: Status = .inProgress
 
     private let players: [Player] = [Player(marker: "X"), Player(marker: "O")]
 
@@ -18,6 +19,7 @@ final class Game {
     func play(position: Int) {
         board.play(position: position, marker: currentPlayer.marker)
         switchPlayers()
+        status = .playerWon(Player(marker: "X"))
     }
 
     private func switchPlayers() {
