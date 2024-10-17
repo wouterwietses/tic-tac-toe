@@ -38,6 +38,16 @@ import Testing
     #expect(game.status == .playerWon(Player(marker: "X")))
 }
 
+@Test func aPositionCanOnlyBeAssignedOnce() async throws {
+    let game = Game()
+    
+    game.play(position: 1)
+
+    #expect(throws: Board.Error.positionAlreadyAssigned) {
+        game.play(position: 1)
+    }
+}
+
 @Test func playerTwoWinsWithTopRow() async throws {
     let game = Game()
 
