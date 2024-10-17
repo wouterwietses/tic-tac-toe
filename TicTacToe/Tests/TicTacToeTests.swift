@@ -41,5 +41,5 @@ import Testing
     game.play(position: 5)
     game.play(position: 3)
 
-    #expect(game.status == GameStatus.winner(player: Player(marker: "X")))
+    #expect(game.status == .playerWon(Player(marker: "X")))
 }
