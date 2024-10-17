@@ -10,27 +10,31 @@ final class Board: CustomStringConvertible {
              o = "O"
     }
 
-    private var playedPositions: [Int: Marker] = [1: .empty,
-                                                  2: .empty,
-                                                  3: .empty,
-                                                  4: .empty,
-                                                  5: .empty,
-                                                  6: .empty,
-                                                  7: .empty,
-                                                  8: .empty,
-                                                  9: .empty]
+    enum Position: Int {
+        case one, two, three, four, five, six, seven, eight, nine
+    }
+
+    private var playedPositions: [Position: Marker] = [.one: .empty,
+                                                       .two: .empty,
+                                                       .three: .empty,
+                                                       .four: .empty,
+                                                       .five: .empty,
+                                                       .six: .empty,
+                                                       .seven: .empty,
+                                                       .eight: .empty,
+                                                       .nine: .empty]
 
     var description: String {
         """
 -------------
-| \(playedPositions[1]!.rawValue) | \(playedPositions[2]!.rawValue) | \(playedPositions[3]!.rawValue) |
-| \(playedPositions[4]!.rawValue) | \(playedPositions[5]!.rawValue) | \(playedPositions[6]!.rawValue) |
-| \(playedPositions[7]!.rawValue) | \(playedPositions[8]!.rawValue) | \(playedPositions[9]!.rawValue) |
+| \(playedPositions[.one]!.rawValue) | \(playedPositions[.two]!.rawValue) | \(playedPositions[.three]!.rawValue) |
+| \(playedPositions[.four]!.rawValue) | \(playedPositions[.five]!.rawValue) | \(playedPositions[.six]!.rawValue) |
+| \(playedPositions[.seven]!.rawValue) | \(playedPositions[.eight]!.rawValue) | \(playedPositions[.nine]!.rawValue) |
 -------------
 """
     }
 
-    func play(position: Int, marker: Marker) throws {
+    func play(position: Position, marker: Marker) throws {
         guard playedPositions[position] == .empty else { throw Error.positionAlreadyAssigned }
 
         guard !isGameOver() else { throw Error.gameIsOver }
@@ -48,11 +52,11 @@ final class Board: CustomStringConvertible {
 
     private func isTopRowWin() -> Bool {
         return isEqualForWin(
-            markerLhs: playedPositions[1]!,
-            markerRhs: playedPositions[2]!
+            markerLhs: playedPositions[.one]!,
+            markerRhs: playedPositions[.two]!
         ) && isEqualForWin(
-            markerLhs: playedPositions[1]!,
-            markerRhs: playedPositions[3]!
+            markerLhs: playedPositions[.one]!,
+            markerRhs: playedPositions[.three]!
         )
     }
 
