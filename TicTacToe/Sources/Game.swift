@@ -18,8 +18,10 @@ final class Game {
 
     func play(position: Int) {
         board.play(position: position, marker: currentPlayer.marker)
+        if board.isGameOver() {
+            status = .playerWon(currentPlayer)
+        }
         switchPlayers()
-        status = .playerWon(Player(marker: "X"))
     }
 
     private func switchPlayers() {
