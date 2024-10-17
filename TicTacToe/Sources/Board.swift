@@ -47,7 +47,7 @@ final class Board: CustomStringConvertible {
     }
 
     func isGameOver() -> Bool {
-        isTopRowWin()
+        isTopRowWin() || isMiddleRowWin()
     }
 
     private func isTopRowWin() -> Bool {
@@ -57,6 +57,16 @@ final class Board: CustomStringConvertible {
         ) && isEqualForWin(
             markerLhs: playedPositions[.one]!,
             markerRhs: playedPositions[.three]!
+        )
+    }
+
+    private func isMiddleRowWin() -> Bool {
+        return isEqualForWin(
+            markerLhs: playedPositions[.four]!,
+            markerRhs: playedPositions[.five]!
+        ) && isEqualForWin(
+            markerLhs: playedPositions[.four]!,
+            markerRhs: playedPositions[.six]!
         )
     }
 
