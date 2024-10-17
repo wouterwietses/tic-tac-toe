@@ -16,8 +16,8 @@ final class Game {
         self.currentPlayer = players.first!
     }
 
-    func play(position: Int) {
-        board.play(position: position, marker: currentPlayer.marker)
+    func play(position: Int) throws {
+        try board.play(position: position, marker: currentPlayer.marker)
         if board.isGameOver() {
             status = .playerWon(currentPlayer)
         }

@@ -21,7 +21,7 @@ import Testing
 }
 
 @Test func playerOneWinsWithTopRow() async throws {
-    let game = playGameWithPlayerOneAsWinner()
+    let game = try playGameWithPlayerOneAsWinner()
 
     #expect(game.board.description == """
 -------------
@@ -33,7 +33,7 @@ import Testing
 }
 
 @Test func playerOneWinsGameStatus() async throws {
-    let game = playGameWithPlayerOneAsWinner()
+    let game = try playGameWithPlayerOneAsWinner()
 
     #expect(game.status == .playerWon(Player(marker: "X")))
 }
@@ -41,34 +41,34 @@ import Testing
 @Test func aPositionCanOnlyBeAssignedOnce() async throws {
     let game = Game()
     
-    game.play(position: 1)
+    try game.play(position: 1)
 
     #expect(throws: Board.Error.positionAlreadyAssigned) {
-        game.play(position: 1)
+        try game.play(position: 1)
     }
 }
 
 @Test func playerTwoWinsWithTopRow() async throws {
     let game = Game()
 
-    game.play(position: 4)
-    game.play(position: 1)
-    game.play(position: 5)
-    game.play(position: 2)
-    game.play(position: 7)
-    game.play(position: 3)
+    try game.play(position: 4)
+    try game.play(position: 1)
+    try game.play(position: 5)
+    try game.play(position: 2)
+    try game.play(position: 7)
+    try game.play(position: 3)
 
     #expect(game.status == .playerWon(Player(marker: "O")))
 }
 
-func playGameWithPlayerOneAsWinner() -> Game {
+func playGameWithPlayerOneAsWinner() throws -> Game {
     let game = Game()
 
-    game.play(position: 1)
-    game.play(position: 4)
-    game.play(position: 2)
-    game.play(position: 5)
-    game.play(position: 3)
+    try game.play(position: 1)
+    try game.play(position: 4)
+    try game.play(position: 2)
+    try game.play(position: 5)
+    try game.play(position: 3)
 
     return game
 }

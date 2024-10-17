@@ -1,5 +1,9 @@
 final class Board: CustomStringConvertible {
 
+    enum Error: Swift.Error {
+        case positionAlreadyAssigned
+    }
+
     private var playedPositions: [Int: String] = [1: " ",
                                                   2: " ",
                                                   3: " ",
@@ -20,7 +24,9 @@ final class Board: CustomStringConvertible {
 """
     }
 
-    func play(position: Int, marker: String) {
+    func play(position: Int, marker: String) throws {
+        guard playedPositions[position] == " " else { throw Error.positionAlreadyAssigned }
+
         playedPositions[position] = marker
     }
 
