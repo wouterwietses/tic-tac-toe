@@ -1,7 +1,7 @@
 final class Board: CustomStringConvertible {
 
     enum Error: Swift.Error {
-        case positionAlreadyAssigned
+        case positionAlreadyAssigned, gameIsOver
     }
 
     enum Marker: String {
@@ -33,6 +33,8 @@ final class Board: CustomStringConvertible {
     func play(position: Int, marker: Marker) throws {
         guard playedPositions[position] == .empty else { throw Error.positionAlreadyAssigned }
 
+        guard !isGameOver() else { throw Error.gameIsOver }
+
         playedPositions[position] = marker
     }
 
@@ -41,6 +43,18 @@ final class Board: CustomStringConvertible {
     }
 
     private func isTopRowWin() -> Bool {
-        return playedPositions[1] == playedPositions[2] && playedPositions[1] == playedPositions[3]
+        return isEqualForWin(
+            markerLhs: playedPositions[1]!,
+            markerRhs: playedPositions[2]!
+        ) && isEqualForWin(
+            markerLhs: playedPositions[1]!,
+            markerRhs: playedPositions[3]!
+        )
+    }
+
+    private func isEqualForWin(markerLhs: Marker, markerRhs: Marker) -> Bool {
+        guard markerLhs != .empty else { return false }
+
+        return markerLhs == markerRhs
     }
 }
