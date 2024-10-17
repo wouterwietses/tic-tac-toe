@@ -19,3 +19,17 @@ import Testing
 -------------
 """)
 }
+
+@Test func firstTurnIsReflectedInBoard() async throws {
+    let game = Game()
+
+    game.play(position: 1)
+
+    #expect(game.board.description == """
+-------------
+| X |   |   |
+|   |   |   |
+|   |   |   |
+-------------
+""")
+}
