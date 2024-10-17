@@ -2,6 +2,7 @@ final class Game {
 
     enum Status: Equatable {
         case inProgress
+        case draw
         case playerWon(Player)
     }
 
@@ -20,6 +21,8 @@ final class Game {
         try board.play(position: position, marker: currentPlayer.marker)
         if board.isGameOver() {
             status = .playerWon(currentPlayer)
+        } else if board.isDraw() {
+            status = .draw
         }
         switchPlayers()
     }

@@ -38,6 +38,10 @@ final class Board: CustomStringConvertible {
         playedPositions[position] = marker
     }
 
+    func isDraw() -> Bool {
+        playedPositions.values.allSatisfy { $0 != .empty }
+    }
+
     func isGameOver() -> Bool {
         isTopRowWin()
     }
