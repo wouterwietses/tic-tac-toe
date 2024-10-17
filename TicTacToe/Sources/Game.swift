@@ -10,6 +10,14 @@ final class Game {
 
     func play(position: Int) {
         board.play(position: position, marker: currentPlayer.marker)
-        currentPlayer = players.last!
+        switchPlayers()
+    }
+
+    private func switchPlayers() {
+        if currentPlayer == players.first! {
+            currentPlayer = players.last!
+        } else {
+            currentPlayer = players.first!
+        }
     }
 }
