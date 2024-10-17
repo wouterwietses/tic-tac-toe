@@ -48,6 +48,14 @@ import Testing
     }
 }
 
+@Test func gameCannotContinueAfterWin() async throws {
+    let game = try playGameWithPlayerOneAsWinner()
+
+    #expect(throws: Board.Error.gameIsOver) {
+        try game.play(position: 9)
+    }
+}
+
 @Test func playerTwoWinsWithTopRow() async throws {
     let game = Game()
 
