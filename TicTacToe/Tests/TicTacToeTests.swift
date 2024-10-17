@@ -69,6 +69,22 @@ import Testing
     #expect(game.status == .playerWon(Player(marker: .o)))
 }
 
+@Test func gameIsADraw() async throws {
+    let game = Game()
+    
+    try game.play(position: 1)
+    try game.play(position: 2)
+    try game.play(position: 3)
+    try game.play(position: 4)
+    try game.play(position: 6)
+    try game.play(position: 5)
+    try game.play(position: 7)
+    try game.play(position: 9)
+    try game.play(position: 8)
+
+    #expect(game.status == .draw)
+}
+
 func playGameWithPlayerOneAsWinner() throws -> Game {
     let game = Game()
 
