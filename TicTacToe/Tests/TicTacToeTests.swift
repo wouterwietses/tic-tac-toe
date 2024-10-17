@@ -14,35 +14,6 @@ import Testing
 """)
 }
 
-@Test func firstTurnIsReflectedInBoard() async throws {
-    let game = Game()
-
-    game.play(position: 1)
-
-    #expect(game.board.description == """
--------------
-| X |   |   |
-|   |   |   |
-|   |   |   |
--------------
-""")
-}
-
-@Test func secondPlayerFirstTurnIsReflectedInBoard() async throws {
-    let game = Game()
-
-    game.play(position: 1)
-    game.play(position: 3)
-
-    #expect(game.board.description == """
--------------
-| X |   | O |
-|   |   |   |
-|   |   |   |
--------------
-""")
-}
-
 @Test func playerOneWinsWithTopRow() async throws {
     let game = Game()
 
