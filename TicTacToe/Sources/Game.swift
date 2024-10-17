@@ -13,7 +13,3 @@ final class Game {
         currentPlayer = players.last!
     }
 }
-
-struct Player {
-    let marker: String
-}
