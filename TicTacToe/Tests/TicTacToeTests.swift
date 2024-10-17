@@ -20,24 +20,6 @@ import Testing
     #expect(game.status == .inProgress)
 }
 
-@Test func playerOneWinsWithTopRow() async throws {
-    let game = try playGameWithPlayerOneAsWinner()
-
-    #expect(game.board.description == """
--------------
-| X | X | X |
-| O | O |   |
-|   |   |   |
--------------
-""")
-}
-
-@Test func playerOneWinsGameStatus() async throws {
-    let game = try playGameWithPlayerOneAsWinner()
-
-    #expect(game.status == .playerWon(Player(marker: .x)))
-}
-
 @Test func aPositionCanOnlyBeAssignedOnce() async throws {
     let game = Game()
     
@@ -49,7 +31,13 @@ import Testing
 }
 
 @Test func gameCannotContinueAfterWin() async throws {
-    let game = try playGameWithPlayerOneAsWinner()
+    let game = Game()
+
+    try game.play(position: 1)
+    try game.play(position: 4)
+    try game.play(position: 2)
+    try game.play(position: 5)
+    try game.play(position: 3)
 
     #expect(throws: Board.Error.gameIsOver) {
         try game.play(position: 9)
@@ -85,14 +73,11 @@ import Testing
     #expect(game.status == .draw)
 }
 
-func playGameWithPlayerOneAsWinner() throws -> Game {
+@Test("All winning permutations", arguments: [[1,4,2,5,3]])
+func allWinningPermutations(plays: [Int]) async throws {
     let game = Game()
 
-    try game.play(position: 1)
-    try game.play(position: 4)
-    try game.play(position: 2)
-    try game.play(position: 5)
-    try game.play(position: 3)
+    plays.forEach { try! game.play(position: $0) }
 
-    return game
+    #expect(game.status == .playerWon(Player(marker: .x)))
 }
