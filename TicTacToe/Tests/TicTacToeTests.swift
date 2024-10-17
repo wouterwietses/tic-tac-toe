@@ -7,3 +7,15 @@ import Testing
 
     #expect(game.board != nil)
 }
+
+@Test func allPositionsAreEmptyInitially() async throws {
+    let game = Game()
+    
+    #expect(game.board.description == """
+-------------
+|   |   |   |
+|   |   |   |
+|   |   |   |
+-------------
+""")
+}
