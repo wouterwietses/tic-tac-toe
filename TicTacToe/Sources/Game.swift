@@ -1,5 +1,12 @@
+enum GameStatus: Equatable {
+    case winner(player: Player)
+}
+
 final class Game {
+
     let board: Board = Board()
+    private(set) var status: GameStatus = .winner(player: Player(marker: "X"))
+
     private let players: [Player] = [Player(marker: "X"), Player(marker: "O")]
 
     private var currentPlayer: Player
