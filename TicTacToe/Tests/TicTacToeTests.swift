@@ -75,7 +75,8 @@ import Testing
 
 @Test("All winning permutations", arguments: [
     [Board.Position.one, .four, .two, .five, .three],
-    [.four, .one, .five, .two, .six]
+    [.four, .one, .five, .two, .six],
+    [.seven, .one, .eight, .two, .nine]
 ])
 func allWinningPermutations(plays: [Board.Position]) async throws {
     let game = Game()
