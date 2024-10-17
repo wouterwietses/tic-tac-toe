@@ -36,7 +36,7 @@ import Testing
 
     #expect(game.board.description == """
 -------------
-| X |   | 0 |
+| X |   | O |
 |   |   |   |
 |   |   |   |
 -------------
