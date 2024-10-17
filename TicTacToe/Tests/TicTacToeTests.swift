@@ -15,13 +15,7 @@ import Testing
 }
 
 @Test func playerOneWinsWithTopRow() async throws {
-    let game = Game()
-
-    game.play(position: 1)
-    game.play(position: 4)
-    game.play(position: 2)
-    game.play(position: 5)
-    game.play(position: 3)
+    let game = playGameWithPlayerOneAsWinner()
 
     #expect(game.board.description == """
 -------------
@@ -33,6 +27,12 @@ import Testing
 }
 
 @Test func playerOneWinsGameStatus() async throws {
+    let game = playGameWithPlayerOneAsWinner()
+
+    #expect(game.status == .playerWon(Player(marker: "X")))
+}
+
+func playGameWithPlayerOneAsWinner() -> Game {
     let game = Game()
 
     game.play(position: 1)
@@ -41,5 +41,5 @@ import Testing
     game.play(position: 5)
     game.play(position: 3)
 
-    #expect(game.status == .playerWon(Player(marker: "X")))
+    return game
 }
